@@ -10,18 +10,16 @@ def get_token() -> str:
     return requests.post(url, json=payload).json()['token']
 
 
-def get_stat():
-    url = 'https://api.videohead.tech/api/lk/statistics/?start=' + str(get_start()) + '&end=' + str(get_finish()) + '&group=host&limit=5'
+def get_stat(days: int) -> str:
+    url = 'https://api.videohead.tech/api/lk/statistics/?start=' + str(get_start(days)) + '&end=' + str(get_finish()) + '&group=host'
     headers = {"Content-Type": "application/json; charset=utf-8", 'Authorization': 'Token ' + get_token()}
     return requests.get(url, headers=headers).json()
 
 
 def get_finish() -> date:
-    return datetime.date.today()
+    return datetime.date.today() + datetime.timedelta(days=1)
 
 
-def get_start() -> date:
-    return datetime.date.today() - datetime.timedelta(days=30)
+def get_start(days: int) -> date:
+    return get_finish() - datetime.timedelta(days=days)
 
-
-print(get_stat())

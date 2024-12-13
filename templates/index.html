@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Статистика</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 </head>
 <body>
 <div style="width: 60%; margin: auto">
-    <h1 style="text-align: center">Статистика за день</h1>
+    <h3 style="text-align: center">Статистика рекламодателя 1</h3>
     <h3 style="text-align: center">Ваш доход</h3>
     <table class="table">
         <thead class="thead-dark">
@@ -32,55 +32,208 @@
         </tbody>
     </table>
     <h3 style="text-align: center">По дням и плейсментам</h3>
-    <table class="table">
-        <thead class="thead-dark">
-        <tr>
-            <th>Дни</th>
-            <th>Плейсмент</th>
-            <th>Оплачиваемые события</th>
-            <th>CPM</th>
-            <th>Доход</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for data in buzzoola_stats['result']['data'] %}
-        <tr>
-            <td>{{data['date']}}</td>
-            <td>{{data['placement_title']}}</td>
-            <td>{{data['data']['pub_paid_events']}}</td>
-            <td>{{data['data']['cpm']}}</td>
-            <td>{{data['data']['revenue']}}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <h3 style="text-align: center">Статистика Videohead</h3>
-    <table class="table">
-        <thead class="thead-dark">
-        <tr>
-            <th>Площадка</th>
-            <th>CTR, %</th>
-            <th>Загрузки</th>
-            <th>Зачеты</th>
-            <th>Утилизация, %</th>
-            <th>Досмотры, %</th>
-            <th>Видимость, %</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for data in videohead_stats %}
-        <tr>
-            <td>{{data['name']}}</td>
-            <td>{{data['ctr']}}</td>
-            <td>{{data['loads']}}</td>
-            <td>{{data['bids']}}</td>
-            <td>{{data['efficiency']}}</td>
-            <td>{{data['completed']}}</td>
-            <td>{{data['visibility']}}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <ul class="nav nav-pills mb-3" id="pills-tab-1" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="pills-home-tab-1" data-bs-toggle="pill" data-bs-target="#pills-home-1" type="button" role="tab" aria-controls="pills-home-1" aria-selected="true">День</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-profile-tab-1" data-bs-toggle="pill" data-bs-target="#pills-profile-1" type="button" role="tab" aria-controls="pills-profile-1" aria-selected="false">Неделя</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-contact-tab-1" data-bs-toggle="pill" data-bs-target="#pills-contact-1" type="button" role="tab" aria-controls="pills-contact-1" aria-selected="false">Месяц</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent-1">
+        <div class="tab-pane fade show active" id="pills-home-1" role="tabpanel" aria-labelledby="pills-home-tab">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Дни</th>
+                    <th>Плейсмент</th>
+                    <th>Оплачиваемые события</th>
+                    <th>CPM</th>
+                    <th>Доход</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in buzzoola_stats_1['result']['data'] %}
+                <tr>
+                    <td>{{data['date']}}</td>
+                    <td>{{data['placement_title']}}</td>
+                    <td>{{data['data']['pub_paid_events']}}</td>
+                    <td>{{data['data']['cpm']}}</td>
+                    <td>{{data['data']['revenue']}}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                <td colspan="2" style="font-weight: bold">Итого</td>
+                <td colspan="1">{{total_pub_paid_events_1}}</td>
+                <td colspan="1">{{total_cpm_1}}</td>
+                <td colspan="1">{{total_revenue_1}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="pills-profile-1" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Дни</th>
+                    <th>Плейсмент</th>
+                    <th>Оплачиваемые события</th>
+                    <th>CPM</th>
+                    <th>Доход</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in buzzoola_stats_5['result']['data'] %}
+                <tr>
+                    <td>{{data['date']}}</td>
+                    <td>{{data['placement_title']}}</td>
+                    <td>{{data['data']['pub_paid_events']}}</td>
+                    <td>{{data['data']['cpm']}}</td>
+                    <td>{{data['data']['revenue']}}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="2" style="font-weight: bold">Итого</td>
+                    <td colspan="1">{{total_pub_paid_events_5}}</td>
+                    <td colspan="1">{{total_cpm_5}}</td>
+                    <td colspan="1">{{total_revenue_5}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="pills-contact-1" role="tabpanel" aria-labelledby="pills-contact-tab">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Дни</th>
+                    <th>Плейсмент</th>
+                    <th>Оплачиваемые события</th>
+                    <th>CPM</th>
+                    <th>Доход</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in buzzoola_stats_30['result']['data'] %}
+                <tr>
+                    <td>{{data['date']}}</td>
+                    <td>{{data['placement_title']}}</td>
+                    <td>{{data['data']['pub_paid_events']}}</td>
+                    <td>{{data['data']['cpm']}}</td>
+                    <td>{{data['data']['revenue']}}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="2" style="font-weight: bold">Итого</td>
+                    <td colspan="1">{{total_pub_paid_events_30}}</td>
+                    <td colspan="1">{{total_cpm_30}}</td>
+                    <td colspan="1">{{total_revenue_30}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <h3 style="text-align: center">Статистика рекламодателя 2</h3>
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">День</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Неделя</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Месяц</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Площадка</th>
+                    <th>CTR, %</th>
+                    <th>Загрузки</th>
+                    <th>Зачеты</th>
+                    <th>Утилизация, %</th>
+                    <th>Досмотры, %</th>
+                    <th>Видимость, %</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in videohead_stats_1 %}
+                <tr>
+                    <td>{{data['name']}}</td>
+                    <td>{{data['ctr']}}</td>
+                    <td>{{data['loads']}}</td>
+                    <td>{{data['bids']}}</td>
+                    <td>{{data['efficiency']}}</td>
+                    <td>{{data['completed']}}</td>
+                    <td>{{data['visibility']}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Площадка</th>
+                    <th>CTR, %</th>
+                    <th>Загрузки</th>
+                    <th>Зачеты</th>
+                    <th>Утилизация, %</th>
+                    <th>Досмотры, %</th>
+                    <th>Видимость, %</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in videohead_stats_5 %}
+                <tr>
+                    <td>{{data['name']}}</td>
+                    <td>{{data['ctr']}}</td>
+                    <td>{{data['loads']}}</td>
+                    <td>{{data['bids']}}</td>
+                    <td>{{data['efficiency']}}</td>
+                    <td>{{data['completed']}}</td>
+                    <td>{{data['visibility']}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Площадка</th>
+                    <th>CTR, %</th>
+                    <th>Загрузки</th>
+                    <th>Зачеты</th>
+                    <th>Утилизация, %</th>
+                    <th>Досмотры, %</th>
+                    <th>Видимость, %</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in videohead_stats_30 %}
+                <tr>
+                    <td>{{data['name']}}</td>
+                    <td>{{data['ctr']}}</td>
+                    <td>{{data['loads']}}</td>
+                    <td>{{data['bids']}}</td>
+                    <td>{{data['efficiency']}}</td>
+                    <td>{{data['completed']}}</td>
+                    <td>{{data['visibility']}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
