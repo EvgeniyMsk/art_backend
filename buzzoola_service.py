@@ -1,3 +1,5 @@
+import datetime
+
 import requests
 from requests.cookies import RequestsCookieJar
 
@@ -13,7 +15,7 @@ def get_cookies() -> RequestsCookieJar:
 
 def get_stats():
     url_2 = 'https://api.buzzoola.com/v3/pub/publisher/stats'
-    data_2 = {"start": "2024-12-06", "end": "2024-12-13", "placements": [], "period": "day"}
+    data_2 = {"start": str(datetime.date.today() - datetime.timedelta(days=7)), "end": str(datetime.date.today()), "placements": [], "period": "day"}
     return requests.post(url_2, json=data_2, cookies=get_cookies()).json()
 
 
@@ -21,3 +23,9 @@ def get_income():
     url_3 = 'https://api.buzzoola.com/v3/pub/publisher/stats/period-income'
     today_income = requests.get(url_3, cookies=get_cookies())
     return today_income.json()
+
+
+def set_start():
+    print(datetime.date.today() - datetime.timedelta(days=7))
+
+set_start()

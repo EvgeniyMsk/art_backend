@@ -1,4 +1,7 @@
+from datetime import date
+
 import requests
+import datetime
 
 
 def get_token() -> str:
@@ -8,9 +11,17 @@ def get_token() -> str:
 
 
 def get_stat():
-    url = 'https://api.videohead.tech/api/lk/statistics/?start=2024-11-13&end=2024-12-13&group=host&limit=5'
+    url = 'https://api.videohead.tech/api/lk/statistics/?start=' + str(get_start()) + '&end=' + str(get_finish()) + '&group=host&limit=5'
     headers = {"Content-Type": "application/json; charset=utf-8", 'Authorization': 'Token ' + get_token()}
     return requests.get(url, headers=headers).json()
+
+
+def get_finish() -> date:
+    return datetime.date.today()
+
+
+def get_start() -> date:
+    return datetime.date.today() - datetime.timedelta(days=30)
 
 
 print(get_stat())
