@@ -16,6 +16,12 @@ def get_stat(days: int) -> str:
     return requests.get(url, headers=headers).json()
 
 
+def get_earnings(days: int) -> str:
+    url = 'https://api.videohead.tech/api/lk/earnings/?start=' + str(get_start(days)) + '&end=' + str(get_finish()) + '&group=host'
+    headers = {"Content-Type": "application/json; charset=utf-8", 'Authorization': 'Token ' + get_token()}
+    return requests.get(url, headers=headers).json()
+
+
 def get_finish() -> date:
     return datetime.date.today() + datetime.timedelta(days=1)
 
