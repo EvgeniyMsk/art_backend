@@ -7,7 +7,7 @@ import buzzoola_service as buzz_svc
 import videohead_service as video_svc
 
 app = FastAPI()
-app.mount("/static", StaticFiles(directory="static"), name="static")
+# app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 @app.get("/")
